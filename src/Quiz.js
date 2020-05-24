@@ -9,6 +9,10 @@ class Quiz extends Component {
         super(props);
         this.state = {quiz_position: 1};
     };
+
+    handleResetClick() {
+        this.setState({quiz_position: 1})
+    }
     
     showNextQuestion() {
         this.setState({quiz_position: this.state.quiz_position + 1});
@@ -20,7 +24,7 @@ class Quiz extends Component {
 
         return (<div> 
                     {isQuizEnd ?
-                        <QuizEnd />
+                        <QuizEnd resetClickHandler={this.handleResetClick.bind(this)}/>
                     :
                         <QuizQuestion showNextQuestionHandler={this.showNextQuestion.bind(this)} quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]} />
                     }
